@@ -35,22 +35,6 @@ The platform is designed with a local-first philosophy. All subject data and his
 - **Backend Analytics**: Python 3.11, FastAPI, Scikit-Learn.
 - **Storage**: Client-side localStorage for sensitive subject data.
 
-## Replication and Setup
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/ShraddhaBora/BRIS.git
-   ```
-2. Install frontend dependencies:
-   ```bash
-   npm install
-   ```
-3. Initialize the development environment:
-   ```bash
-   npm run dev
-   ```
-
 ## Academic Foundations
 This framework builds upon established research in credit risk and machine learning:
 - **Thomas, L. C., et al. (2002)**: Fundamental principles of credit scoring.
