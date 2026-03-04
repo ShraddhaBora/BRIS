@@ -231,6 +231,9 @@ export default function SettingsPage({ user }) {
 
             {/* About */}
             <Section title="About BRIS">
+                <p style={{ fontSize: 13, color: 'var(--t2)', lineHeight: 1.6, marginBottom: 20 }}>
+                    BRIS is a research-grade behavioral risk intelligence platform designed to monitor transaction sequences and identify subtle patterns of financial drift. It utilizes an ensemble of calibrated models to provide transparency and early-warning signals for risk management.
+                </p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 12 }}>
                     {[
                         { label: 'Platform Version', val: 'v2.4.1' },
