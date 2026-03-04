@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this system for research, please cite it as below."
+authors:
+- family-names: "Bora"
+  given-names: "Shraddha"
+title: "BRIS: Behavioral Risk Intelligence System"
+version: 1.0.0
+date-released: 2024-03-04
+url: "https://github.com/ShraddhaBora/BRIS"
+keywords:
+  - "behavioral analytics"
+  - "credit risk"
+  - "machine learning"
+  - "explainable AI"
+  - "behavioral drift"
+abstract: "An analytical framework for identifying loan default risk through behavioral transaction drift and ensemble modeling."

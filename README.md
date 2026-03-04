@@ -1,72 +1,61 @@
 # BRIS: Behavioral Risk Intelligence System
 
 ## Overview
-BRIS (Behavioral Risk Intelligence System) is a portfolio-level analytical framework designed to identify and quantify financial risk through the lens of behavioral drift. Unlike traditional scoring methods that rely on point-in-time financial snapshots, BRIS monitors continuous transaction sequences to detect early-warning signals of financial distress. The system is built to provide an interpretable, research-grade interface for risk analysts and data scientists.
-
-![Dashboard Visualization](assets/dashboard.png)
+BRIS (Behavioral Risk Intelligence System) is an analytical framework designed for the quantification of financial risk through the identification of behavioral drift. Modern credit scoring traditionally relies on static, point-in-time financial snapshots. BRIS provides a methodological shift by monitoring continuous transaction sequences to detect subtle, early-warning signals of financial distress that often precede default by 60 to 90 days.
 
 ## Core Methodology
-The system employs a multi-model ensemble approach to provide robust risk estimations across varying behavioral contexts.
+The system architecture prioritizes model robustness and interpretability, utilizing a calibrated ensemble approach suitable for high-stakes financial environments.
 
 ### Ensemble Architecture
-The core prediction engine utilizes a weighted ensemble of:
-- **XGBoost & LightGBM**: Gradient Boosted Decision Trees (GBDT) optimized for tabular behavioral snapshots and rate-of-change features.
-- **LSTM Networks**: Recurrent layers designed to process sequential transaction data to capture temporal dependencies that static models overlook.
+The core prediction system combines multiple learning paradigms to balance snapshot precision with temporal awareness:
+- **Gradient Boosted Ensembles**: Utilizes XGBoost and LightGBM to process high-dimensional tabular snapshots and behavioral rate-of-change markers.
+- **Recurrent Architectures**: Incorporates LSTM (Long Short-Term Memory) layers to ingest sequential transaction data, capturing multi-period temporal dependencies.
 
-### Probability Calibration
-Raw model outputs are calibrated via Platt scaling (Logistic Regression on validation sets) to ensure that predicted probabilities accurately reflect empirical default rates, minimizing the Brier score for reliability.
+### Statistical Calibration and Reliability
+To ensure the integrity of the predicted risk scores, the system implements:
+- **Platt Scaling**: Raw model outputs undergo logistic regression on a held-out verification set to transform them into well-calibrated probabilities.
+- **Epistemic Uncertainty**: Monte Carlo (MC) Dropout (n=500 iterations) is utilized to estimate model confidence intervals, allowing analysts to distinguish between high-risk predictions and high-uncertainty regions of the feature space.
 
-### Uncertainty Quantification
-To account for model epistemic uncertainty, the system incorporates Monte Carlo (MC) Dropout sampling (n=500 passes). This provides a confidence interval around each point prediction, which is critical for high-stakes financial decision-making.
+## Key Analytical Features
 
-## Key Features
+### Behavioral Drift Quantification
+Risk is conceptualized as the statistical deviation from a 90-day moving behavioral baseline. The framework monitors specific signals including:
+- **Utilization Velocity**: The normalized rate of credit limit exhaustion.
+- **Payment Delay Trajectory**: Shifts in the mean and variance of payment timing relative to historical norms.
+- **Spending Volatility**: The 30-day coefficient of transaction variation, serving as a proxy for income irregularity and financial stress.
 
-### Behavioral Drift Detection
-The system monitors shifts in transaction patterns—such as credit utilization velocity, payment delay trends, and spending volatility—relative to a 90-day moving baseline.
+### Explainable AI (XAI) Protocol
+Regulatory compliance (e.g., EU AI Act, Basel III) requires transparency in automated decisioning. BRIS utilizes SHAP (SHapley Additive exPlanations) to provide local feature attribution for every individual assessment. This mathematical decomposition allows for a precise understanding of the specific behavioral drivers behind any given risk elevation.
 
-![User Analyzer Interface](assets/analyzer.png)
+### Architectural Security
+The platform is designed with a local-first philosophy. All subject data and historical caches remain within the client's local storage environment, ensuring data sovereignty and privacy by design.
 
-### Explainable AI (XAI)
-Per-prediction feature attribution is provided via SHAP (SHapley Additive exPlanations). This allows analysts to decompose a risk score into its constituent behavioral drivers, satisfying regulatory requirements for model transparency and auditability.
+## Technical Specifications
+- **Client Interface**: React 18, Vite, Recharts (Modern SaaS Layout).
+- **Backend Analytics**: Python 3.11, FastAPI, Scikit-Learn.
+- **Storage**: Client-side localStorage for sensitive subject data.
 
-### Local Privacy
-BRIS is designed as a browser-native or local-first application. All sensitive subject data and analysis history are stored within the client's local storage, ensuring that data never leaves the analyst's environment.
-
-## Technical Stack
-- **Frontend**: React 18, Vite, Lucide React, Recharts.
-- **Styling**: Vanilla CSS3 with a custom SaaS-grade design system.
-- **Backend (Optional)**: Python/FastAPI for large-scale training and high-fidelity inference.
-- **Data Visualization**: Custom SVG-based gauge indicators and responsive charting containers.
-
-## Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher)
-- npm or yarn
+## Replication and Setup
 
 ### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/ShraddhaBora/BRIS.git
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd BRIS
-   ```
-3. Install dependencies:
+2. Install frontend dependencies:
    ```bash
    npm install
    ```
-4. Start the development server:
+3. Initialize the development environment:
    ```bash
    npm run dev
    ```
 
-## Academic Context
-This framework draws upon principles from:
-- Thomas et al. (2002) on credit scoring applications.
-- Lundberg & Lee (2017) regarding unified approaches to model interpretability.
-- Gal & Ghahramani (2016) on Bayesian approximations in deep learning.
+## Academic Foundations
+This framework builds upon established research in credit risk and machine learning:
+- **Thomas, L. C., et al. (2002)**: Fundamental principles of credit scoring.
+- **Lundberg, S. M., & Lee, S.-I. (2017)**: Theoretical framework for SHAP attribution.
+- **Gal, Y., & Ghahramani, Z. (2016)**: Bayesian approximations via Dropout.
 
 ## License
-MIT License
+Licensed under the MIT License.
