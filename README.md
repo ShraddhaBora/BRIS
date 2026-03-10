@@ -1,5 +1,7 @@
 # BRIS: Behavioral Risk Intelligence System
 
+**[Live Demonstration](https://ShraddhaBora.github.io/BRIS/)**
+
 ## About
 BRIS (Behavioral Risk Intelligence System) is an analytical framework designed for the quantification of financial risk through the identification of behavioral drift. Modern credit scoring traditionally relies on static, point-in-time financial snapshots. BRIS provides a methodological shift by monitoring continuous transaction sequences to detect subtle, early-warning signals of financial distress that often precede default by 60 to 90 days.
 
